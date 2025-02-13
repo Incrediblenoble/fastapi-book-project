@@ -50,7 +50,7 @@ jobs:
           pytest
 
       - name: Decode SSH key
-        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 --decode > /tmp/ssh_private_key
+        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/ssh_private_key
         shell: bash
 
       - name: Set SSH permissions
