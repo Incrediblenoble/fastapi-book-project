@@ -49,13 +49,20 @@ jobs:
         run: |
           pytest
 
+      - name: Decode SSH key
+        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 --decode > /tmp/ssh_private_key
+        shell: bash
+
+      - name: Set SSH permissions
+        run: chmod 600 /tmp/ssh_private_key
+        shell: bash
+
       - name: Deploy to EC2
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           EC2_USER: ${{ secrets.EC2_USER }}
           EC2_HOST: ${{ secrets.EC2_HOST }}
         run: |
-          ssh -i "$SSH_PRIVATE_KEY" -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
+          ssh -i /tmp/ssh_private_key -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
             # Clone the repository
             cd /path/to/your/deployment/directory
             git clone https://github.com/hng12-devbotops/fastapi-book-project.git
