@@ -22,9 +22,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
-
       - name: Run tests
         run: |
-          pytest --ignore=/boot/efi --maxfail=1 --disable-warnings -v
+          pytest tests/ --maxfail=1 --disable-warnings -v
