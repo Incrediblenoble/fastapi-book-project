@@ -25,4 +25,3 @@ jobs:
       - name: Run tests
         run: |
           pytest tests/ --maxfail=1 --disable-warnings -v
-// comment some lines//
