@@ -27,4 +27,4 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest tests/
+          pytest --ignore=/boot/efi --maxfail=1 --disable-warnings -v
