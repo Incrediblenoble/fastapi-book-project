@@ -55,4 +55,4 @@ jobs:
             sudo docker rm books-api || true
 
             sudo docker build -t books-api:latest .
-            sudo docker run -d --name books-api -p 8000:8000 books-api:latest
+            sudo docker run -d --name books-api -p 8080:8080 books-api:latest
