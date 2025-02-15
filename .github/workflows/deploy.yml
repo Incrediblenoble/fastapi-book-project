@@ -51,8 +51,8 @@ jobs:
               cd "$APP_DIR"
             fi
 
-            docker stop books-api || true
-            docker rm books-api || true
+            sudo docker stop books-api || true
+            sudo docker rm books-api || true
 
-            docker build -t books-api:latest .
-            docker run -d --name books-api -p 8000:8000 books-api:latest
+            sudo docker build -t books-api:latest .
+            sudo docker run -d --name books-api -p 8000:8000 books-api:latest
