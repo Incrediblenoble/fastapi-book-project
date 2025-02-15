@@ -1,4 +1,5 @@
 from tests import client
+from main import app
 
 
 def test_get_all_books():
