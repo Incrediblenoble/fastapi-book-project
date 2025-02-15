@@ -68,3 +68,11 @@ async def update_book(book_id: int, book: Book) -> Book:
 async def delete_book(book_id: int) -> None:
     db.delete_book(book_id)
     return JSONResponse(status_code=status.HTTP_204_NO_CONTENT, content=None)
+
+@router.get("/stage2", response_model=Book, status_code=status.HTTP_200_OK)
+async def get_stage2_book():
+    # Example logic for the /stage2 endpoint
+    book = db.books.get(2)  # Assuming book with ID 2 is the stage2 book
+    if not book:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return book
